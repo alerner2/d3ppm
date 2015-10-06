@@ -32,13 +32,10 @@ d3ppm.dataManager = function module() {
             if (xmlhttp.readyState == 4 && (xmlhttp.status == 200 || xmlhttp.status === 0)) {
                 var xmlData = xmlhttp.responseXML;
                 var rows = xmlData.getElementsByTagName("Record");
-                //rows.length
                 for (var i = 0; i < rows.length; i++) {
                     var record = {};
-                    //console.log(i);
                     var fields = rows[i].getElementsByTagName("*");
                     for (var j = 0; j < fields.length; j++)  {
-                        //console.log(camelCase(fields[j].nodeName)+': '+fields[j].innerHTML);
                         record[camelCase(fields[j].nodeName)] = fields[j].innerHTML.replace('&amp;', '&') ;
                     }
                     data.push(record); 
@@ -48,7 +45,6 @@ d3ppm.dataManager = function module() {
         }       
         
         function callXOGAPI(queryCode, filters) {
-            //console.log(filters);
             var filter = '';
             
             if (filters) {
@@ -84,7 +80,6 @@ d3ppm.dataManager = function module() {
            xmlhttp.send(xml);
         }
     
-        //dispatch.dataReady(data);
     };
         
     d3.rebind(exports, dispatch, 'on');
